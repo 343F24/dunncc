@@ -1,5 +1,5 @@
 import * as d3 from 'd3';
-import * as d3Sankey from "d3-sankey";
+import * as d3Sankey from 'd3-sankey';
 
 const width = 928;
 const height = 600;
@@ -21,13 +21,11 @@ const sankey = d3Sankey.sankey()
   .nodePadding(10)
   .extent([[1, 5], [width - 1, height - 5]]);
 
-
 async function init() {
   const data = await d3.json("data/data_sankey.json");
   // Applies it to the data. We make a copy of the nodes and links objects
   // so as to avoid mutating the original.
   const { nodes, links } = sankey({
-    // const tmp = sankey({
     nodes: data.nodes.map(d => Object.assign({}, d)),
     links: data.links.map(d => Object.assign({}, d))
   });
